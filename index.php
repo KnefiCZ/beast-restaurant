@@ -1,41 +1,11 @@
-<?php //Načtení všech knihoven z adresáře VENDOR
-    require_once "vendor/autoload.php";
 
-    use Illuminate\Database\Capsule\Manager as DB;
-
-    $db = new DB;
-    $db->addConnection(
-        [
-            'driver' => 'mysql',
-            'host' => 'localhost',
-            'database' => 'beast_restaurant',
-            'username' => 'root',
-            'password' => 'root',
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci'
-        ]
-        );
-
-    $db->setAsGlobal();
-    $db->bootEloquent();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Select vseho</title>
-</head>
-<body>
 <!-- Pokus o jakoze incert :DDDDDDDDD --> 
-<?//php require_once "header.php";?>
-
+<?php require_once "header.php";?>
 
     <?php
     
     try {
-        $products = DB::select("SELECT * FROM products;");
+        $products = Model::getProducts();
     } catch (\Throwable $th) {
         echo "Nepovedl se SELECT z orders!" . "<br>";
         $products = array();
@@ -47,7 +17,7 @@
             echo $product->price . "<br>";
             echo $product->description . "<br>";
             echo $product->id_type . "<br>";
-            echo $product->weight . "<br>";
+            echo $product->weight . "<br>" . "/\/\/\/\/" ."<br>";
         }
     ?>
     <form action="#">
@@ -56,7 +26,7 @@
     <hr>
     <?php
     try {
-        $users = DB::select("SELECT * FROM users;");
+        $users = Model::getUsers();
     } catch (\Throwable $th) {
         echo "Nepovedl se SELECT z users!" . "<br>";
         $users = array();
@@ -69,7 +39,7 @@
             echo $user->firstname . "<br>";
             echo $user->lastname . "<br>";
             echo $user->address . "<br>";
-            echo $user->city . "<br>";
+            echo $user->city . "<br>" . "/\/\/\/\/" ."<br>";
         }
 
     ?>
