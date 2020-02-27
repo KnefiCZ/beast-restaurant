@@ -1,6 +1,6 @@
 <?php //Načtení všech knihoven z adresáře VENDOR
     require_once "vendor/autoload.php";
-    require_once "Model.php"
+    require_once "Model.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

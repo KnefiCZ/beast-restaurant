@@ -28,5 +28,39 @@
             $products=DB::select("SELECT * FROM products");
             return $products;
         }
+        public static function addUsers() {
+            try {
+                $email = filter_input(INPUT_POST, 'email');
+                $password = filter_input(INPUT_POST, 'password');
+                $firstname = filter_input(INPUT_POST, 'firstname');
+                $lastname = filter_input(INPUT_POST, 'lastname');
+                $address = filter_input(INPUT_POST, 'address');
+                $city = filter_input(INPUT_POST, 'city');
+
+                $inserted = DB::insert("INSERT INTO users 
+                                    (email,
+                                     password,
+                                     firstname,
+                                     lastname,
+                                     address,
+                                     city)
+                                     VALUES(
+                                         '$email',
+                                         '$password',
+                                         '$firstname',
+                                         '$lastname',
+                                         '$address',
+                                         '$city');");
+        
+            if ($inserted == true) {
+                echo "Přidáno!";
+            }
+                }   catch (\Throwable $th) { var_dump($th);
+                    echo "Nebylo možné přidat!" . "<br>";
+                    $users = array();
+                }
+                 
+        }
     }
     ?>
+    
