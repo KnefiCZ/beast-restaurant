@@ -1,14 +1,26 @@
+<?php require_once "header.php";?>
+<?php 
+$email = filter_input(INPUT_POST, 'email');
+$password = filter_input(INPUT_POST, 'password');
+$firstname = filter_input(INPUT_POST, 'firstname');
+$lastname = filter_input(INPUT_POST, 'lastname');
+$address = filter_input(INPUT_POST, 'address');
+$city = filter_input(INPUT_POST, 'city');
+$submit = filter_input(INPUT_POST, 'submit');
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add_user</title>
-</head>
-<body>
-    <form action="submit_user.php" method="post">
+    $message = "Stránka byla načtena...";
+
+    if(isset($submit)) {
+        $message = "Stránka byla načtena odesláním formuláře...";
+        $result = Model::addUsers($email, $password, $firstname, $lastname, $address, $city);
+        if($result) {
+            $message = "Uživatel byl úspěšně přídán...";
+        }
+    }
+?>
+
+<h1>Přidání uživatele :):</h1>
+    <form action="add_user.php" method="post">
     <label for="email">Email:</label>
     <input type="email" name="email" placeholder="priklad@abc.cz"> <br>
     <label for="password">Heslo:</label>
@@ -21,7 +33,7 @@
     <input type="text" name="address" placeholder="Praha 10, 29004/byt 56"> <br>
     <label for="city">Město:</label>
     <input type="text" name="city" placeholder="Praha"> <br>
-    <input type="submit" name="sub" > 
+    <input type="submit" name="submit" > 
     </form>
     
 

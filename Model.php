@@ -28,15 +28,8 @@
             $products=DB::select("SELECT * FROM products");
             return $products;
         }
-        public static function addUsers() {
+        public static function addUsers($email, $password, $firstname, $lastname, $address, $city) {
             try {
-                $email = filter_input(INPUT_POST, 'email');
-                $password = filter_input(INPUT_POST, 'password');
-                $firstname = filter_input(INPUT_POST, 'firstname');
-                $lastname = filter_input(INPUT_POST, 'lastname');
-                $address = filter_input(INPUT_POST, 'address');
-                $city = filter_input(INPUT_POST, 'city');
-
                 $inserted = DB::insert("INSERT INTO users 
                                     (email,
                                      password,
