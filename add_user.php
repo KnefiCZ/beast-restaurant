@@ -9,16 +9,15 @@ $city = filter_input(INPUT_POST, 'city');
 $submit = filter_input(INPUT_POST, 'submit');
 
     $message = "Stránka byla načtena...";
-
     if(isset($submit)) {
         $message = "Stránka byla načtena odesláním formuláře...";
-        $result = Model::addUsers($email, $password, $firstname, $lastname, $address, $city);
+        $result = Model::addUser($email, $password, $firstname, $lastname, $address, $city);
         if($result) {
-            $message = "Uživatel byl úspěšně přídán...";
+            $message .= "Uživatel byl úspěšně přídán...";
         }
     }
 ?>
-
+<?php echo $message;?>
 <h1>Přidání uživatele :):</h1>
     <form action="add_user.php" method="post">
     <label for="email">Email:</label>

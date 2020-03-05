@@ -28,7 +28,30 @@
             $products=DB::select("SELECT * FROM products");
             return $products;
         }
-        public static function addUsers($email, $password, $firstname, $lastname, $address, $city) {
+        public static function addProduct($name, $price, $description, $id_type, $weight) {
+            try {
+                $inserted = DB::insert("INSERT INTO products 
+                                    (name,
+                                    price,
+                                    description,
+                                    id_type,
+                                    weight)
+                                     VALUES(
+                                         '$name',
+                                         '$price',
+                                         '$description',
+                                         '$id_type',
+                                         '$weight');");
+        
+            if ($inserted == true) {
+                echo "Přidáno!";
+            }
+                }   catch (\Throwable $th) { var_dump($th);
+                    echo "Nebylo možné přidat!" . "<br>";
+                    $products = array();
+                }
+        }
+        public static function addUser($email, $password, $firstname, $lastname, $address, $city) {
             try {
                 $inserted = DB::insert("INSERT INTO users 
                                     (email,
@@ -54,6 +77,7 @@
                 }
                  
         }
+        
     }
     ?>
     
