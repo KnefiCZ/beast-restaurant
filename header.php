@@ -59,6 +59,12 @@
       <i class="fas fa-fw fa-table"></i>
       <span>Uživatelé</span></a>
   </li>
+ <!-- Nav Item - Tables -->
+  <li class="nav-item">
+    <a class="nav-link" href="select_orders.php">
+      <i class="fas fa-fw fa-chart-area"></i>
+      <span>Objednávky</span></a>
+  </li>
 
   <!-- Divider -->
   <hr class="sidebar-divider">

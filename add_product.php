@@ -12,7 +12,10 @@ $submit = filter_input(INPUT_POST, 'submit');
         $message = "Stránka byla načtena odesláním formuláře...";
         $result = Model::addProduct($name, $price, $description, $id_type, $weight);
         if($result) {
-            $message .= "Produkt byl úspěšně přídán...";
+            $message .= "Produkt byl úspěšně přídán...";       
+        }
+        else {
+            $message .= "Nebylo možné přidat!!";
         }
     }
 ?>

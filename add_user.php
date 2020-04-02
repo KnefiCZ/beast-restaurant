@@ -15,6 +15,9 @@ $submit = filter_input(INPUT_POST, 'submit');
         if($result) {
             $message .= "Uživatel byl úspěšně přídán...";
         }
+        else {
+            $message .= "Nebylo možné přidat!!";
+        }
     }
 ?>
 <?php echo $message;?>

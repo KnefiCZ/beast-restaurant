@@ -28,8 +28,12 @@
             $products=DB::select("SELECT * FROM products");
             return $products;
         }
+        public static function getOrders() {
+            $orders=DB::select("SELECT * FROM orders");
+            return $orders;
+        }
         public static function addProduct($name, $price, $description, $id_type, $weight) {
-            try {
+           
                 $inserted = DB::insert("INSERT INTO products 
                                     (name,
                                     price,
@@ -43,16 +47,12 @@
                                          '$id_type',
                                          '$weight');");
         
-            if ($inserted == true) {
-                echo "Přidáno!";
-            }
-                }   catch (\Throwable $th) { var_dump($th);
-                    echo "Nebylo možné přidat!" . "<br>";
-                    $products = array();
-                }
+        
+                  return $inserted;
+                
         }
         public static function addUser($email, $password, $firstname, $lastname, $address, $city) {
-            try {
+            
                 $inserted = DB::insert("INSERT INTO users 
                                     (email,
                                      password,
@@ -68,15 +68,28 @@
                                          '$address',
                                          '$city');");
         
-            if ($inserted == true) {
-                echo "Přidáno!";
-            }
-                }   catch (\Throwable $th) { var_dump($th);
-                    echo "Nebylo možné přidat!" . "<br>";
-                    $users = array();
+                   
+                    return $inserted;
                 }
-                 
+        public static function addOrder($created_at, $id_user, $id_payment) {
+           
+                $inserted = DB::insert("INSERT INTO products 
+                                    (name,
+                                    price,
+                                    description,
+                                    id_type,
+                                    weight)
+                                     VALUES(
+                                         '$created_at',
+                                         '$id_user',
+                                         '$id_payment');");
+        
+        
+                  return $inserted;
+                
         }
+                 
+        
         
     }
     ?>
